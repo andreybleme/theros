@@ -1,0 +1,30 @@
+{
+  "name": "banish",
+  "version": "1.0.0",
+  "description": "A simple tool to deploy static websites",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andreybleme/banish.git"
+  },
+  "keywords": [
+    "deploy",
+    "static",
+    "website",
+    "s3",
+    "bucket",
+    "aws"
+  ],
+  "author": "Lucas Andrey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andreybleme/banish/issues"
+  },
+  "homepage": "https://github.com/andreybleme/banish#readme",
+  "dependencies": {
+    "commander": "^2.19.0"
+  }
+}
