@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/andreybleme/banish#readme",
   "dependencies": {
+    "aws-sdk": "^2.409.0",
     "commander": "^2.19.0"
   }
 }
