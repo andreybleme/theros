@@ -1,9 +1,10 @@
 /**
  * Module dependencies.
  */
-
-var program = require('commander');
-var AWS = require('aws-sdk');
+const program = require('commander');
+const fs = require('fs');
+const path = require('path');
+const AWS = require('aws-sdk');
 
 
 program
@@ -16,7 +17,7 @@ program
     AWS.config.update(awsCredentials);
 
     // create bucket
-    s3 = new AWS.S3();
+    let s3 = new AWS.S3();
     s3.createBucket(bucketParams, function(err, data) {
       if (err) {
         console.log('Error', err);
@@ -24,9 +25,9 @@ program
         console.log('Success', data.Location);
 
         // set static website policies
-        staticHostParams.Bucket = bucketParams.Bucket
-        staticHostParams.WebsiteConfiguration.IndexDocument.Suffix = 'index.html'
-        staticHostParams.WebsiteConfiguration.ErrorDocument.Key = 'error.html'
+        staticHostParams.Bucket = bucketParams.Bucket;
+        staticHostParams.WebsiteConfiguration.IndexDocument.Suffix = 'index.html';
+        staticHostParams.WebsiteConfiguration.ErrorDocument.Key = 'error.html';
 
         s3.putBucketWebsite(staticHostParams, function(err, data) {
           if (err) {
@@ -38,7 +39,6 @@ program
       }
     });
 
-    console.log('key: ' + awsCredentials.accessKeyId + ', secret: ' + awsCredentials.secretAccessKey + ', bucket: ' + bucketParams.Bucket)
   })
 
 program
@@ -47,8 +47,32 @@ program
   .option('-k, --key <s>', 'AWS Key', setKey)
   .option('-s, --secret <s>', 'AWS Secret', setSecret)
   .action(function () {
-    console.log('key: ' + awsCredentials.accessKeyId + ', secret: ' + awsCredentials.secretAccessKey + ', bucket: ' + bucketParams.Bucket)
-  })
+    // setup credentials
+    AWS.config.update(awsCredentials);
+    let s3 = new AWS.S3();
+
+    // get all files
+    walkSync('./root', function(filePath) {
+      // read file
+      fs.readFile(filePath, function (err, data) {
+        if (err) throw err;
+
+        // upload file to s3 bucket
+        s3.putObject({
+          Bucket: bucketParams.Bucket,
+          Key: filePath,
+          Body: data,
+          ACL: 'public-read'
+        }, function(error, dataS3) {
+          if (error) {
+            return console.log('There was an error uploading your file: ', error.message);
+          }
+          console.log('Successfully uploaded file.');
+        });
+      });
+    });
+
+  });
 
 
 let awsCredentials = {
@@ -83,6 +107,18 @@ function setSecret(val) {
 
 function setBucket(val) {
   bucketParams.Bucket = val
+}
+
+function walkSync(currentDirPath, callback) {
+  fs.readdirSync(currentDirPath).forEach(function (name) {
+    var filePath = path.join(currentDirPath, name);
+    var stat = fs.statSync(filePath);
+    if (stat.isFile()) {
+      callback(filePath);
+    } else if (stat.isDirectory()) {
+      walkSync(filePath, callback);
+    }
+  });
 }
 
 program.parse(process.argv)
