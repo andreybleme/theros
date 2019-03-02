@@ -4,19 +4,19 @@
 const program = require('commander')
 const AWS = require('aws-sdk')
 const filesystem = require('./app/filesystem')
+const s3Services = require('./app/s3Services')
 
-
-let awsCredentials = {
+const awsCredentials = {
   region: 'us-west-1',
   accessKeyId: '',
   secretAccessKey: ''
 }
 
-let bucketParams = {
+const bucketParams = {
   Bucket : ''
 }
 
-let staticHostParams = {
+const staticHostParams = {
   Bucket: '',
   WebsiteConfiguration: {
     ErrorDocument: {
@@ -34,32 +34,12 @@ program
   .option('-k, --key <s>', 'AWS Key', setKey)
   .option('-s, --secret <s>', 'AWS Secret', setSecret)
   .action(function () {
-    // setup credentials
-    AWS.config.update(awsCredentials)
+    s3Services.setAwsCredentials(awsCredentials)
 
-    // create bucket
-    let s3 = new AWS.S3()
-    s3.createBucket(bucketParams, function(err, data) {
-      if (err) {
-        console.log('Error', err)
-      } else {
-        console.log('Success', data.Location)
-
-        // set static website policies
-        staticHostParams.Bucket = bucketParams.Bucket
-        staticHostParams.WebsiteConfiguration.IndexDocument.Suffix = 'index.html'
-        staticHostParams.WebsiteConfiguration.ErrorDocument.Key = 'error.html'
-
-        s3.putBucketWebsite(staticHostParams, function(err, data) {
-          if (err) {
-            console.log('Error', err)
-          } else {
-            console.log('Success', data)
-          }
-        });
-      }
-    });
-
+    staticHostParams.Bucket = bucketParams.Bucket
+    staticHostParams.WebsiteConfiguration.IndexDocument.Suffix = 'index.html'
+    staticHostParams.WebsiteConfiguration.ErrorDocument.Key = 'error.html'
+    s3Services.createBucket(bucketParams, staticHostParams)
   })
 
 program
@@ -68,22 +48,10 @@ program
   .option('-k, --key <s>', 'AWS Key', setKey)
   .option('-s, --secret <s>', 'AWS Secret', setSecret)
   .action(function () {
-    // setup credentials
-    AWS.config.update(awsCredentials)
-    let s3 = new AWS.S3()
+    s3Services.setAwsCredentials(awsCredentials)
 
-    filesystem.getAllFilesFrom('./root', function (filePath, data) {
-      s3.putObject({
-        Bucket: bucketParams.Bucket,
-        Key: filePath,
-        Body: data,
-        ACL: 'public-read'
-      }, function(error, dataS3) {
-        if (error) {
-          return console.log('There was an error uploading your file: ', error.message)
-        }
-        console.log('Successfully uploaded file.')
-      });
+    filesystem.getAllFilesFrom('.', function (filePath, data) {
+      s3Services.uploadObject(bucketParams.Bucket, filePath, data)
     })
 
   });
