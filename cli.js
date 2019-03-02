@@ -7,7 +7,7 @@ const filesystem = require('./app/filesystem')
 const s3Services = require('./app/s3Services')
 
 const awsCredentials = {
-  region: 'us-west-1',
+  region: 'us-east-1',
   accessKeyId: '',
   secretAccessKey: ''
 }
@@ -33,6 +33,7 @@ let rootFolder = '.'
 program
   .command('create')
   .option('-b, --bucket <s>', 'Bucket name', setBucket)
+  .option('-r, --region <s>', 'Bucket region (default: us-east-1)', setRegion)
   .option('-k, --key <s>', 'AWS Key', setKey)
   .option('-s, --secret <s>', 'AWS Secret', setSecret)
   .action(function () {
@@ -65,6 +66,10 @@ function setKey(val) {
 
 function setSecret(val) {
   awsCredentials.secretAccessKey = val
+}
+
+function setRegion(val) {
+  awsCredentials.region = val
 }
 
 function setBucket(val) {
