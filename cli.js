@@ -28,6 +28,8 @@ const staticHostParams = {
   }
 }
 
+let rootFolder = '.'
+
 program
   .command('create')
   .option('-b, --bucket <s>', 'Bucket name', setBucket)
@@ -47,10 +49,11 @@ program
   .option('-b, --bucket <s>', 'Bucket name', setBucket)
   .option('-k, --key <s>', 'AWS Key', setKey)
   .option('-s, --secret <s>', 'AWS Secret', setSecret)
+  .option('-r, --root <s>', 'Root path', setRootFolder)
   .action(function () {
     s3Services.setAwsCredentials(awsCredentials)
 
-    filesystem.getAllFilesFrom('.', function (filePath, data) {
+    filesystem.getAllFilesFrom(rootFolder, function (filePath, data) {
       s3Services.uploadObject(bucketParams.Bucket, filePath, data)
     })
 
@@ -68,5 +71,8 @@ function setBucket(val) {
   bucketParams.Bucket = val
 }
 
+function setRootFolder(val) {
+  rootFolder = val
+}
 
 program.parse(process.argv)
