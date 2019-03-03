@@ -1,14 +1,14 @@
 {
-  "name": "banish",
+  "name": "theros",
   "version": "1.0.0",
-  "description": "A simple tool to deploy static websites",
+  "description": "A simple and reliable CLI tool to deploy static websites",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andreybleme/banish.git"
+    "url": "git+https://github.com/andreybleme/theros.git"
   },
   "keywords": [
     "deploy",
@@ -19,11 +19,11 @@
     "aws"
   ],
   "author": "Lucas Andrey",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/andreybleme/banish/issues"
+    "url": "https://github.com/andreybleme/theros/issues"
   },
-  "homepage": "https://github.com/andreybleme/banish#readme",
+  "homepage": "https://github.com/andreybleme/theros#readme",
   "dependencies": {
     "aws-sdk": "^2.409.0",
     "commander": "^2.19.0"

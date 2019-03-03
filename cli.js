@@ -1,8 +1,4 @@
-/**
- * Module dependencies.
- */
 const program = require('commander')
-const AWS = require('aws-sdk')
 const filesystem = require('./app/filesystem')
 const s3Services = require('./app/s3Services')
 
