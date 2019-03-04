@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const program = require('commander')
 const filesystem = require('./app/filesystem')
 const s3Services = require('./app/s3Services')
@@ -51,10 +53,13 @@ program
     s3Services.setAwsCredentials(awsCredentials)
 
     filesystem.getAllFilesFrom(rootFolder, function (filePath, data) {
+      if (rootFolder !== '.') {
+        filePath = filePath.replace(rootFolder, '')
+      }
       s3Services.uploadObject(bucketParams.Bucket, filePath, data)
     })
 
-  });
+  })
 
 function setKey(val) {
   awsCredentials.accessKeyId = val

@@ -1,8 +1,8 @@
 {
   "name": "theros",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A simple and reliable CLI tool to deploy static websites",
-  "main": "index.js",
+  "main": "cli.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,6 +20,9 @@
   ],
   "author": "Lucas Andrey",
   "license": "MIT",
+  "bin": {
+    "theros": "cli.js"
+  },
   "bugs": {
     "url": "https://github.com/andreybleme/theros/issues"
   },
