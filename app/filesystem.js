@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const mime = require('mime')
 
 function getAllFilesFrom(currentDirPath, callback) {
   fs.readdirSync(currentDirPath).forEach(function (name) {
@@ -19,6 +20,11 @@ function getAllFilesFrom(currentDirPath, callback) {
   });
 }
 
+function getMimeType(filePath) {
+  return mime.getType(filePath)
+}
+
 module.exports = {
   getAllFilesFrom,
+  getMimeType
 };

@@ -58,7 +58,6 @@ program
       }
       s3Services.uploadObject(bucketParams.Bucket, filePath, data)
     })
-
   })
 
 function setKey(val) {

@@ -1,6 +1,6 @@
 {
   "name": "theros",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A simple and reliable CLI tool to deploy static websites",
   "main": "cli.js",
   "scripts": {
@@ -29,6 +29,7 @@
   "homepage": "https://github.com/andreybleme/theros#readme",
   "dependencies": {
     "aws-sdk": "^2.409.0",
-    "commander": "^2.19.0"
+    "commander": "^2.19.0",
+    "mime": "^2.4.0"
   }
 }
