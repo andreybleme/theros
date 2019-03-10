@@ -2,6 +2,7 @@
 
 A simple and reliable tool to deploy static websites.
 
+
 ## What is theros?
 
 Theros is a CLI tool to deploy static websites. It takes a website and upload it to an s3 bucket.
@@ -19,6 +20,9 @@ Some of the tools I found around to do so, was either not mantained anymore or n
 
 > npm install -g theros
 
+### Testing
+
+> npm run test
 
 ## Usage
 
