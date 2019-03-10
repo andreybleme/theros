@@ -4,7 +4,7 @@
   "description": "A simple and reliable CLI tool to deploy static websites",
   "main": "cli.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --no-cache"
   },
   "repository": {
     "type": "git",
@@ -31,5 +31,8 @@
     "aws-sdk": "^2.409.0",
     "commander": "^2.19.0",
     "mime": "^2.4.0"
+  },
+  "devDependencies": {
+    "jest": "^24.3.1"
   }
 }
