@@ -32,7 +32,7 @@ If you don't have it, check [how to get your AWS security credentials](https://a
 
 #### Create
 
-This command create a bucket poiting to `index.html` as the default root page, and `404.html` as the default error page.
+This command create a bucket pointing to `index.html` as the default root page, and `404.html` as the default error page.
 
 > theros create --bucket <bucketname> --key <access_key> --secret <client_secret>
   
