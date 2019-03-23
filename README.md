@@ -2,6 +2,7 @@
 
 A simple and reliable tool to deploy static websites.
 
+
 ## What is theros?
 
 Theros is a CLI tool to deploy static websites. It takes a website and upload it to an s3 bucket.
@@ -19,6 +20,9 @@ Some of the tools I found around to do so, was either not mantained anymore or n
 
 > npm install -g theros
 
+### Testing
+
+> npm run test
 
 ## Usage
 
@@ -28,7 +32,7 @@ If you don't have it, check [how to get your AWS security credentials](https://a
 
 #### Create
 
-This command create a bucket poiting to `index.html` as the default root page, and `404.html` as the default error page.
+This command create a bucket pointing to `index.html` as the default root page, and `404.html` as the default error page.
 
 > theros create --bucket <bucketname> --key <access_key> --secret <client_secret>
   
