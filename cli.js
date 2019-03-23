@@ -27,6 +27,7 @@ const staticHostParams = {
 }
 
 let rootFolder = '.'
+let excluded = []
 
 program
   .command('create')
@@ -49,6 +50,7 @@ program
   .option('-k, --key <s>', 'AWS Key', setKey)
   .option('-s, --secret <s>', 'AWS Secret', setSecret)
   .option('-r, --root <s>', 'Root path', setRootFolder)
+  .option('-e, --exclude <items>', 'Exclude files', setExclude)
   .action(function () {
     s3Services.setAwsCredentials(awsCredentials)
 
@@ -56,7 +58,9 @@ program
       if (rootFolder !== '.') {
         filePath = filePath.replace(rootFolder, '')
       }
-      s3Services.uploadObject(bucketParams.Bucket, filePath, data)
+      if(!excluded.includes(filePath)) {
+        s3Services.uploadObject(bucketParams.Bucket, filePath, data)
+      }
     })
   })
 
@@ -78,6 +82,10 @@ function setBucket(val) {
 
 function setRootFolder(val) {
   rootFolder = val
+}
+
+function setExclude(val) {
+  excluded = val.split(',')
 }
 
 program.parse(process.argv)
