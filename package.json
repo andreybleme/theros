@@ -1,6 +1,6 @@
 {
   "name": "theros",
-  "version": "1.0.4",
+  "version": "1.0.4.1",
   "description": "A simple and reliable CLI tool to deploy static websites",
   "main": "cli.js",
   "scripts": {
