@@ -38,8 +38,11 @@ This command create a bucket pointing to `index.html` as the default root page, 
   
 To create a bucket in a specific region (default is us-east-1), you can use `--region` parameter:
 
-
 > theros create --bucket <bucketname> --key <access_key> --secret <client_secret> --region <availability_zone>
+  
+To define custom index and/or error page (default is index.html and error.html), you can use `--index` and `--error` parameters:
+
+> theros create --bucket <bucketname> --key <access_key> --secret <client_secret> --index <customindex.html> --error <customerror.html>
 
 
 #### Deploy
