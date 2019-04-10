@@ -52,6 +52,10 @@ Then you can deploy your site:
   
 > theros deploy --bucket <bucketname> --key <access_key> --secret <client_secret> --root /user/folder
   
+  If you want to ignore files, that is, do not deploy them, you can use `--ignore` parameter:
+  
+> theros deploy --bucket <bucketname> --key <access_key> --secret <client_secret> --ignore 404.html,403.html
+  
   
   ## License
   
