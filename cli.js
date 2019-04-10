@@ -18,10 +18,10 @@ const staticHostParams = {
   Bucket: '',
   WebsiteConfiguration: {
     ErrorDocument: {
-      Key: ''
+      Key: 'error.html'
     },
     IndexDocument: {
-      Suffix: ''
+      Suffix: 'index.html'
     },
   }
 }
@@ -33,14 +33,14 @@ program
   .command('create')
   .option('-b, --bucket <s>', 'Bucket name', setBucket)
   .option('-r, --region <s>', 'Bucket region (default: us-east-1)', setRegion)
+  .option('-i, --index <s>', 'Index page (default: index.html)', setIndex)
+  .option('-e, --error <s>', 'Error page (default> error.html)', setError)
   .option('-k, --key <s>', 'AWS Key', setKey)
   .option('-s, --secret <s>', 'AWS Secret', setSecret)
   .action(function () {
     s3Services.setAwsCredentials(awsCredentials)
-
+    
     staticHostParams.Bucket = bucketParams.Bucket
-    staticHostParams.WebsiteConfiguration.IndexDocument.Suffix = 'index.html'
-    staticHostParams.WebsiteConfiguration.ErrorDocument.Key = 'error.html'
     s3Services.createBucket(bucketParams, staticHostParams)
   })
 
@@ -86,6 +86,14 @@ function setRootFolder(val) {
 
 function setIgnore(val) {
   ignored = val.split(',')
+}
+
+function setIndex(val) {
+  staticHostParams.WebsiteConfiguration.IndexDocument.Suffix = val
+}
+
+function setError(val) {
+  staticHostParams.WebsiteConfiguration.ErrorDocument.Key = val
 }
 
 program.parse(process.argv)
