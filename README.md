@@ -34,30 +34,30 @@ If you don't have it, check [how to get your AWS security credentials](https://a
 
 This command create a bucket pointing to `index.html` as the default root page, and `404.html` as the default error page.
 
-> theros create --bucket <bucketname> --key <access_key> --secret <client_secret>
+> theros create --bucket <bucket_name> --key <access_key> --secret <client_secret>
   
 To create a bucket in a specific region (default is us-east-1), you can use `--region` parameter:
 
-> theros create --bucket <bucketname> --key <access_key> --secret <client_secret> --region <availability_zone>
+> theros create --bucket <bucket_name> --key <access_key> --secret <client_secret> --region <availability_zone>
   
 To define custom index and/or error page (default is index.html and error.html), you can use `--index` and `--error` parameters:
 
-> theros create --bucket <bucketname> --key <access_key> --secret <client_secret> --index <customindex.html> --error <customerror.html>
+> theros create --bucket <bucket_name> --key <access_key> --secret <client_secret> --index <customindex.html> --error <customerror.html>
 
 
 #### Deploy
 
 Then you can deploy your site:
 
-> theros deploy --bucket <bucketname> --key <access_key> --secret <client_secret>
+> theros deploy --bucket <bucket_name> --key <access_key> --secret <client_secret>
   
   If your files are in a different folder, you can use `--root` parameter:
   
-> theros deploy --bucket <bucketname> --key <access_key> --secret <client_secret> --root /user/folder
+> theros deploy --bucket <bucket_name> --key <access_key> --secret <client_secret> --root /user/folder
   
   If you want to ignore files, that is, do not deploy them, you can use `--ignore` parameter:
   
-> theros deploy --bucket <bucketname> --key <access_key> --secret <client_secret> --ignore 404.html,403.html
+> theros deploy --bucket <bucket_name> --key <access_key> --secret <client_secret> --ignore 404.html,403.html
   
   
   ## License
