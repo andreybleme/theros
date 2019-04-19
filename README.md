@@ -1,5 +1,7 @@
 # theros
 
+[![Build Status](https://travis-ci.com/andreybleme/theros.svg?branch=master)](https://travis-ci.com/andreybleme/theros)
+
 A simple and reliable tool to deploy static websites.
 
 
