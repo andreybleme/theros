@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+- '7'
+deploy:
+  provider: npm
+  email: andreybleme1@gmail.com
+  api_key:
+    secure: DDuc8VwvWfMWeeL8x5s2wvaqvawaWUYvOR0VyN3b20n/2vYgxfGDMi9AUOFA9KE5lsQ2C7vcE8/L1n6ICkrzb7cy7rYkR4dZNPHT/H/KVzTsw5w2z2PeZCEcs0VII30fHvYm78+ktdrqLJgAmbPe+J6Zxgs0oRhw+EQO/8HYWhEUKn31WpaLQbBgU7K2wtQzr7Arm60Qya/riTZY95mk62f2Hq5R4DKQJOeswQlly0uRc7IGdTVROUxsXlJkQNo97FXZ4ZP5qOhDHRuA6WU4021AOZPC9Bn1Wa7wruIADdfMdXerTQjLEBhl7U/lJgbXtsGWaet0tlK4mhief6U8wqtnUdMIMjhKvhi7TFKD3amaFZUVNMYgH3KtApEm9yBsxnSaB4IGywEKynIWrCi3etpwrxb3UnJi3/Tg1DJSZ5UN2mco79Y82VsinJ23LwSEywWfrt35+si4teysvAfYtTruviB7/6lMWfByYxZzv3dj8UhYCeyGr3yAv75YGqiy1NF+my08JPZUx9hG+hRLFCR5gv74v7fMqgB68Di46ytiaHZ7tUhDW1cY8MpgJBPDCsWCU+TYlrIA2YYg7gq3xoCEPFFLzrsucIqyYRVoD0ffpeuM2wB1nPDP+dJFLUCxPsZB+Kxqef65iiYxE0o+slSS5d/SRpKYAQnMPpTnkY0=
+  on:
+    tags: true
+  skip_cleanup: true
