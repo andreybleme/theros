@@ -14,7 +14,9 @@ You can use `theros` to quickly create a new s3 bucket with the proper static we
 ## Why
 
 We need an alternative to manually uploading static websites to s3 buckets and repeatidly configuring its hosting policies. 
-Some of the tools I found around to do so, was either not mantained anymore or not fast/simple enought.
+Some of the tools I found around to do so, was either not mantained anymore, or not fast/simple enought.
+
+> [Here I shared some insights](https://dev.to/andreybleme/theros-the-cli-tool-to-deploy-static-websites-3p76) from the process of building this tool.
 
 
 ## Installation
