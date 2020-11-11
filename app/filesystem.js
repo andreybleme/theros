@@ -10,7 +10,7 @@ function getAllFilesFrom(currentDirPath, callback) {
     if (stat.isFile()) {
       fs.readFile(filePath, function (err, data) {
         if (err) {
-          throw err
+          throw new Error(err)
         }
         callback(filePath, data)
       })

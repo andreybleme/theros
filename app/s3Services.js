@@ -27,7 +27,7 @@ function uploadObject(bucket, filePath, data) {
     ContentType: filesystem.getMimeType(filePath)
   }, function(error, dataS3) {
     if (error) {
-      return console.log('There was an error uploading your file: ', error.message)
+      throw new Error(error)
     }
     console.log('Successfully uploaded file: ', filePath)
   });
